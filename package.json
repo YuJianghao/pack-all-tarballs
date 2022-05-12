@@ -1,21 +1,23 @@
 {
-  "name": "pkg-name",
+  "name": "pack-all-tarballs",
   "type": "module",
   "version": "0.0.0",
   "packageManager": "pnpm@7.0.0",
   "description": "",
-  "keywords": [],
-  "homepage": "https://github.com/antfu/pkg-name#readme",
+  "keywords": [
+    "npm pack",
+    "tarballs"
+  ],
+  "homepage": "https://github.com/YuJianghao/pack-all-tarballs#readme",
   "bugs": {
-    "url": "https://github.com/antfu/pkg-name/issues"
+    "url": "https://github.com/YuJianghao/pack-all-tarballs/issues"
   },
   "license": "MIT",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "author": "winwin2011 <yjh2011@live.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antfu/pkg-name.git"
+    "url": "git+https://github.com/YuJianghao/pack-all-tarballs.git"
   },
-  "funding": "https://github.com/sponsors/antfu",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
