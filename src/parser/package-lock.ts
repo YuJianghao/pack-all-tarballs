@@ -1,8 +1,17 @@
+import fs from 'fs/promises'
 interface IPackageLockItem {
   version: string
   dependencies?: Record<string, IPackageLockItem>
 }
-export function getAllDepsFromPackageLockJson(packageLock: string) {
+export async function loadPackageLocJson(path: string) {
+  return fs.readFile(path, 'utf8').catch((err) => {
+    console.error('file to read package-lock.json')
+    console.error(err)
+    process.exit(1)
+  })
+}
+export async function getAllDepsFromPackageLockJson(path: string) {
+  const jsonString = await loadPackageLocJson(path)
   const deps: string[] = []
   function getDeps(packageLockItem: IPackageLockItem) {
     if (!packageLockItem.dependencies)
@@ -12,6 +21,6 @@ export function getAllDepsFromPackageLockJson(packageLock: string) {
       getDeps(dep)
     })
   }
-  getDeps(JSON.parse(packageLock))
+  getDeps(JSON.parse(jsonString))
   return deps
 }
