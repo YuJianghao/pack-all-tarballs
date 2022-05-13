@@ -1,20 +1,18 @@
-import {resolve} from "path"
-import fs from "fs/promises"
-import { Command } from "commander"
-import { getAllDepsFromPackageLockJson } from "./parser/package-lock"
-import { packList } from "./lib"
+import fs from 'fs/promises'
+import { Command } from 'commander'
+import { getAllDepsFromPackageLockJson } from './parser/package-lock'
+import { packList } from './lib'
 
 const program = new Command()
 program
-  .description("des")
-  .argument("<target>", "folder to save tarballs, default to `tarballs`")
-  .option("-p, --path <path>", "path to package-lock.json")
-  .action(async (target = "tarballs", path = "package-lock.json") => {
-    const PACKAGE_LOCK_JSON = resolve(path)
+  .description('Pack all dependencies to tarballs.')
+  .argument('[target]', 'folder to save tarballs', 'tarballs')
+  .option('-p, --path <path>', 'path to package-lock.json', 'package-lock.json')
+  .action(async (target: string, { path }: { path: string }) => {
     const jsonString = await fs
-      .readFile(PACKAGE_LOCK_JSON, "utf8")
+      .readFile(path, 'utf8')
       .catch((err) => {
-        console.error("file to read package-lock.json")
+        console.error('file to read package-lock.json')
         console.error(err)
         process.exit(1)
       })
@@ -22,9 +20,10 @@ program
     if (
       !(await fs.access(target).then(
         () => true,
-        () => false
+        () => false,
       ))
     )
       await fs.mkdir(target)
-    await packList(deps, { cwd: path.resolve(process.cwd(), target) })
-  }).parse()
+    await packList(deps, { cwd: target })
+  })
+  .parse()
