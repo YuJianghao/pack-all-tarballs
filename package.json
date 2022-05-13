@@ -64,5 +64,8 @@
     "unbuild": "^0.7.4",
     "vite": "^2.9.9",
     "vitest": "^0.12.4"
+  },
+  "dependencies": {
+    "execa": "^6.1.0"
   }
 }
