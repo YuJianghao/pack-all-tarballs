@@ -11,8 +11,5 @@ export async function pool<T>(
     return task()
   }
 
-  Array.from({ length: threads }).forEach(() => {
-    task()
-  })
+  return Promise.all(Array.from({ length: threads }).map(() => task()))
 }
-
