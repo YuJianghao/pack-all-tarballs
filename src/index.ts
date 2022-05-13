@@ -12,7 +12,7 @@ const FOLDER = 'tarballs';
     process.exit(1)
   })
   const deps = getAllDepsFromPackageLockJson(jsonString)
-  if (!await fs.stat(FOLDER))
+  if (!await fs.access(FOLDER).then(() => true, () => false))
     await fs.mkdir(FOLDER)
   await packList(deps, { cwd: path.resolve(process.cwd(), FOLDER) })
 })()
