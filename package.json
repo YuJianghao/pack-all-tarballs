@@ -69,6 +69,7 @@
     "vitest": "^0.12.4"
   },
   "dependencies": {
+    "commander": "^9.2.0",
     "execa": "^6.1.0"
   }
 }
