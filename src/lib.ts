@@ -7,7 +7,7 @@ export interface IPackOption {
 }
 
 export async function packOne(target: string, { cwd }: IPackOption = {}) {
-  await execa('npm', ['pack', target], { stdio: 'inherit', cwd }).catch((err) => {
+  await execa('npm', ['pack', target], { cwd }).catch((err) => {
     console.error(`fail to pack ${target}`)
     console.error(err)
   })
