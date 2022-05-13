@@ -1,15 +1,18 @@
 import { resolve } from 'path'
 import { describe, expect, it } from 'vitest'
-import { getAllDepsFromPackageLockJson } from '../src/parser/package-lock'
+import { getAllDepsFromLockFile } from '../src/parser'
 
 describe('parer package lock', () => {
   it('should parse package-lock.json', async () => {
-    const deps = await getAllDepsFromPackageLockJson(
+    const deps = await getAllDepsFromLockFile(
       resolve(__dirname, './fixture/package-lock.json'),
     )
-    expect(deps).include('execa@4.1.0')
-    expect(deps).include('cross-spawn@7.0.3')
-    expect(deps.length).toBe(48)
-    expect(1).toBe(1)
+    expect(deps).include('element-ui@2.15.6')
+  })
+  it('should parse pnpm-lock.yaml', async () => {
+    const deps = await getAllDepsFromLockFile(
+      resolve(__dirname, './fixture/pnpm-lock.yaml'),
+    )
+    expect(deps).include('element-ui@2.15.8')
   })
 })
