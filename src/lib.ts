@@ -14,11 +14,14 @@ export async function packOne(target: string, { cwd }: IPackOption = {}) {
 }
 
 export async function packList(targets: string[], option: IPackOption = {}) {
+  console.log('Start packing ...')
   let count = 0
+  const total = targets.length
   await pool(targets, async (target) => {
     await packOne(target, option)
     count++
-    console.log(`${count}/${targets.length}`)
+    console.log(`${count}/${total} - ${target}`)
   })
+  console.log('Done.')
 }
 
