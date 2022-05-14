@@ -7,9 +7,9 @@ const program = new Command()
 program
   .description('Pack all dependencies to tarballs.')
   .argument('[target]', 'folder to save tarballs', 'tarballs')
-  .option('-p, --path <path>', 'path to package-lock.json', 'package-lock.json')
-  .action(async (target: string, { path }: { path: string }) => {
-    const deps = await getAllDepsFromLockFile(path)
+  .option('-f, --file <file>', 'lock file path')
+  .action(async (target: string, { file }: { file: string }) => {
+    const deps = await getAllDepsFromLockFile(file)
     if (!fs.existsSync(target))
       fs.mkdirSync(target)
     await packList(deps, { cwd: target })
