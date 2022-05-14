@@ -4,6 +4,7 @@ import { pool } from './utils'
 
 export interface IPackOption {
   cwd?: string
+  threads?: number
 }
 
 export async function packOne(target: string, { cwd }: IPackOption = {}) {
@@ -21,6 +22,8 @@ export async function packList(targets: string[], option: IPackOption = {}) {
     await packOne(target, option)
     count++
     console.log(`${count}/${total} - ${target}`)
+  }, {
+    threads: option.threads,
   })
   console.log('Done.')
 }
