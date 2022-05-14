@@ -7,7 +7,7 @@ const program = new Command()
 program
   .description('Pack all dependencies to tarballs.')
   .argument('[target]', 'folder to save tarballs', 'tarballs')
-  .option('-t, --thread <thread>', 'threads count to run parallel', '32')
+  .option('-t, --threads <threads>', 'threads count to run parallel', '32')
   .option('-f, --file <file>', 'lock file path')
   .action(
     async (
