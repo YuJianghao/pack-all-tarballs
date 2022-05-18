@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "commander": "^9.2.0",
-    "execa": "^6.1.0",
+    "execa": "5",
     "js-yaml": "^4.1.0"
   }
 }

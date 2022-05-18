@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { execa } from 'execa'
+import execa from 'execa'
 import { pool } from './utils'
 
 export interface IPackOption {

@@ -1,4 +1,4 @@
-import fs from 'fs/promises'
+import fs from 'fs'
 export async function pool<T>(
   jobs: T[],
   consumer: (job: T) => void,
@@ -16,7 +16,7 @@ export async function pool<T>(
 }
 
 export async function loadFile(path: string) {
-  return fs.readFile(path, 'utf8').catch((err) => {
+  return Promise.resolve(fs.readFileSync(path, 'utf8')).catch((err) => {
     console.error('file to read package-lock.json')
     console.error(err)
     throw err
